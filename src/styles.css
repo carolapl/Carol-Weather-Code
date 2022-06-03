@@ -1,0 +1,90 @@
+body {
+  background: radial-gradient(
+    circle at 10% 20%,
+    rgb(166, 226, 229) 0%,
+    rgb(198, 232, 221) 100.2%
+  );
+}
+
+h1 {
+  color: #7c7c7c;
+  font-size: 24px;
+  font-weight: 100;
+  line-height: 28px;
+  margin: 0;
+}
+
+ul {
+  margin: 0 0 10px;
+  padding: 0;
+}
+
+li {
+  color: ;
+  font-size: 16px;
+  font-weight: 400;
+  height: 19px;
+  line-height: 1;
+  list-style: none;
+}
+
+input {
+  background-color: white;
+  color: #7c7c7c;
+  border: 2px solid #dadde1;
+  padding: 6px;
+  border: 1px;
+  margin-left: 10px;
+}
+
+button {
+  background-color: white;
+  color: #7c7c7c;
+  border: 2px solid #dadde1;
+  padding: 6px;
+  border: 1px;
+  margin-left: -50px;
+}
+
+.weather-app {
+  border: 1px solid white;
+  padding: 15px;
+  margin: 20px auto;
+  border-radius: 10px;
+  max-width: 600px;
+}
+
+.weather-icon {
+  height: 70px;
+  width: 64px;
+  margin-right: 10px;
+}
+
+.temperature {
+  color: rgb(33, 33, 33);
+  font-size: 64px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.units {
+  position: relative;
+  top: -34px;
+}
+
+.search-form {
+  margin-bottom: 25px;
+}
+
+.footer {
+  text-align: center;
+  font-size: 14px;
+  font-weight: lighter;
+  padding-top: 30px;
+}
+
+i.main-icon {
+  font-size: 80px;
+  position: relative;
+  bottom: 4px;
+  color: white;
