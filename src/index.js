@@ -43,8 +43,34 @@ function displayTemperature(response) {
   iconElement.setAttribute("src", `src/${response.data.weather[0].icon}.svg`);
 }
 
-let apiKey = "dac639384c9295f10a0318ea3dfcd2a6";
-let city = "singapore";
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+function searchLocation(position) {
+  let apiKey = "dac639384c9295f10a0318ea3dfcd2a6";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
 
-axios.get(apiUrl).then(displayTemperature);
+  axios.get(apiUrl).then(displayTemperature);
+}
+
+function getCurrentLocation(event) {
+  event.preventDefault();
+  navigator.geolocation.getCurrentPosition(searchLocation);
+}
+
+function search(city) {
+  let apiKey = "dac639384c9295f10a0318ea3dfcd2a6";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayTemperature);
+}
+
+function handleSubmit(event) {
+  event.preventDefault();
+  let cityInputElement = document.querySelector("#city-input");
+  search(cityInputElement.value);
+}
+
+search("Singapore");
+
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", handleSubmit);
+
+let currentLocationButton = document.querySelector("#current-location");
+currentLocationButton.addEventListener("click", getCurrentLocation);
