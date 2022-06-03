@@ -49,8 +49,8 @@ li {
 
 .weather-temperature img {
   margin-right: 5px;
-  height: 64px;
-  width: 64px;
+  height: 75px;
+  width: 75px;
 }
 
 .weather-temperature strong {
