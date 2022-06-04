@@ -1,12 +1,11 @@
-function formatDate(date) {
+const formatDate = (date) => {
   let hours = date.getHours();
-  if (hours < 10) {
-    hours = `0${hours}`;
-  }
   let minutes = date.getMinutes();
-  if (minutes < 10) {
-    minutes = `0${minutes}`;
-  }
+  let ampm = hours >= 12 ? "PM" : "AM";
+  hours = hours % 12;
+  hours = hours ? hours : 12;
+  minutes = minutes.toString().padStart(2, "0");
+  let strTime = hours + ":" + minutes + " " + ampm;
 
   let dayIndex = date.getDay();
   let days = [
@@ -19,8 +18,8 @@ function formatDate(date) {
     "Saturday",
   ];
   let day = days[dayIndex];
-  return `${day} ${hours}:${minutes}`;
-}
+  return `${day} ${strTime}`;
+};
 
 let dateElement = document.querySelector("#date");
 let currentTime = new Date();
@@ -66,7 +65,6 @@ function displayForecast(response) {
 }
 
 function getForecast(coordinates) {
-  console.log(coordinates);
   let apiKey = "dac639384c9295f10a0318ea3dfcd2a6";
   let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayForecast);
