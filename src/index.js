@@ -26,6 +26,36 @@ let dateElement = document.querySelector("#date");
 let currentTime = new Date();
 dateElement.innerHTML = formatDate(currentTime);
 
+function displayForecast(response) {
+  console.log(response.data.daily);
+  let forecaseElement = document.querySelector("#forecast");
+  let forecastHTML = `<div class="row">`;
+  let days = ["Thu", "Fri", "Sat", "Sun", "Mon", "Tues"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+                  <div class="col-2">
+                  <div class="weather-forecast-date">${day}</div>
+                  <img src="src/01d.svg" alt="" width="70" />
+                  <div class="weather-forecast-temperatures">
+                    <span class="weather-forecast-temperatures-max">30°C </span
+                    ><span class="weather-forecast-temperatures-min">28°C</span>
+                  </div>
+                </div>
+                          `;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecaseElement.innerHTML = forecastHTML;
+}
+
+function getForecast(coordinates) {
+  console.log(coordinates);
+  let apiKey = "dac639384c9295f10a0318ea3dfcd2a6";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
+}
+
 function displayTemperature(response) {
   //console.log(response.data);
   let temperatureElement = document.querySelector("#temperature");
@@ -43,6 +73,7 @@ function displayTemperature(response) {
   humidityElement.innerHTML = response.data.main.humidity;
   windElement.innerHTML = Math.round(response.data.wind.speed);
   iconElement.setAttribute("src", `src/${response.data.weather[0].icon}.svg`);
+  getForecast(response.data.coord);
 }
 
 function searchLocation(position) {
